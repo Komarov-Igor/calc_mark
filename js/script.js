@@ -239,7 +239,7 @@ function show_question(query){
             return '<label class="btn btn-primary mr-1' + (el.checked ? ' active': '') +  '">' +
              '<input type="radio" name="options" id="'
                 + el.id + '">' + el.text + ' </label>';
-        }).join('') + '</div></div></div><hr>';
+        }).join('') + '</div></div></div><hr class="noprint">';
     newDiv.innerHTML = inner_html;
     container.insertBefore(newDiv, rowButtons);
 
