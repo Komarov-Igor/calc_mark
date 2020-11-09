@@ -58,3 +58,10 @@ h1 {
     border: 1px solid #cecece;
     background-color: cadetblue;
 }
+
+
+@media print {
+	.noprint {
+		display: none;
+	}
+}

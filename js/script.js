@@ -109,7 +109,7 @@ function next_turn(){
             alert_div.className = 'row';
             alert_div.id = 'rowAlert';
             let inner_html = '<div class="col">\
-                <div class="alert alert-danger alert-dismissible fade show" role="alert" id="alertMessage">\
+                <div class="alert alert-danger alert-dismissible fade show noprint" role="alert" id="alertMessage">\
                     <strong>Ввод не закончен,</strong> выберите один из вариантов.\
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">\
                     <span aria-hidden="true">&times;</span>\
@@ -128,7 +128,7 @@ function next_turn(){
 };
 
 function generate_print_form(){
-    remove_old_block1();
+//    remove_old_block1();
     let table_string = [].concat(...questions.map(el => { 
         let tmp_q = el.answers.filter(ans => ans.checked)[0];
         tmp_q.title = el.title;
@@ -231,8 +231,8 @@ function show_question(query){
     newDiv.className = 'collapse';
     newDiv.id = 'block1';
     let inner_html = '';
-    inner_html += "<h5>" + query.title + '</h5>';
-    inner_html += '<div class="row" id="rowQty"><div class="col-6"><label for="btnGroup" class="col col-form-label">' + 
+    inner_html += '<h5 class="noprint">' + query.title + '</h5>';
+    inner_html += '<div class="row noprint" id="rowQty"><div class="col-6"><label for="btnGroup" class="col col-form-label">' + 
         query.question  + '</label></div><div class="col"><div class="btn-group btn-group-toggle" data-toggle="buttons" id="btnGroup">';
 
     inner_html +=    query.answers.map(el =>{

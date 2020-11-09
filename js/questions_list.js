@@ -2,7 +2,7 @@ const first_questions = `
     [
         {
             "id": 1,
-            "title": "Общие вопросы",
+            "title": "Общие компоненты",
             "question": "Какая учетная система используется?",
             "type": "radio",
             "answers": 
@@ -17,7 +17,7 @@ const first_questions = `
         },
         {
             "id": 2,
-            "title": "Общие вопросы",
+            "title": "Общие компоненты",
             "question": "Требуется приобрести серверное оборудование для разворачивания системы?",
             "type": "radio",
             "answers": 
@@ -30,7 +30,7 @@ const first_questions = `
         },
         {
             "id": 3,
-            "title": "Общие вопросы",
+            "title": "Общие компоненты",
             "question": "Требуется ли приобрести ПО базы данных (MS SQL) для разворачивания системы?",
             "type": "radio",
             "answers": 
@@ -43,7 +43,7 @@ const first_questions = `
         },
         {
             "id": 4,
-            "title": "Общие вопросы",
+            "title": "Общие компоненты",
             "question": "Требуется ли внедрение WMS (складской) системы для работы с кодами маркировки?",
             "type": "radio",
             "answers": 
@@ -57,7 +57,7 @@ const first_questions = `
         },
         {
             "id": 5,
-            "title": "Общие вопросы",
+            "title": "Общие компоненты",
             "question": "Сколько терминалов сбора данных с поддержкой Datamatrix необходимо приобрести для работы на складе?",
             "type": "radio",
             "answers": 
@@ -80,7 +80,7 @@ const first_questions = `
         },
         {
             "id": 6,
-            "title": "Общие вопросы",
+            "title": "Общие компоненты",
             "question": "Требуется внедрение электронного документооборота?",
             "type": "radio",
             "answers": 
@@ -94,7 +94,7 @@ const first_questions = `
         },
         {
             "id": 7,
-            "title": "Общие вопросы",
+            "title": "Общие компоненты",
             "question": "Какое количество отгрузок в год?",
             "type": "radio",
             "answers": 
@@ -109,7 +109,7 @@ const first_questions = `
         },
         {
             "id": 9,
-            "title": "Общие вопросы",
+            "title": "Общие компоненты",
             "question": "На каком кол-ве линии необходимо запустить маркировку?",
             "type": "radio",
             "answers": 
@@ -130,7 +130,7 @@ const first_questions = `
         },
         {
             "id": 8,
-            "title": "Общие вопросы",
+            "title": "Общие компоненты",
             "question": "Количество одновременно работающих линий?",
             "type": "radio",
             "answers": 
