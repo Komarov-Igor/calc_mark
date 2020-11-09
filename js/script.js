@@ -17,9 +17,14 @@ function nextQuestion(newId){
 };
 
 function generate_new_questions(){
-    let cur_ind = cur_q.id;
-    let tmp = cur_q;
+    //let cur_ind = cur_q.id;
+    //let tmp = cur_q;
+    let tmp = questions.filter(el => el.nextId === -1)[0];
+    let cur_ind = tmp.id;
     let i = 1;
+    let new_el = JSON.parse(second_questions);
+    new_el = new_el[0];
+    
     for(i = 1; i <= line_cnt; i++ ) {
         let new_el = JSON.parse(second_questions);
         for(let j = 0; j < new_el.length ; j++ ) {
@@ -49,50 +54,32 @@ btnBack.addEventListener('click', ()=>
 
 btnPrint.addEventListener('click', ()=>
 {
-    let table_string = [].concat(...questions.map(el => {return el.answers.filter(ans => ans.checked)}));
-    let newDiv = document.createElement('div')
-    newDiv.id = 'MessForPrint';
-    let inner_html = ''; 
-    inner_html += '<div class="row">\
-    <div class="col-sm-1 tabel_header">' + '№' + '</div>' + '<div class="col-sm-6 tabel_header">' + 'Название' + '</div>' +
-    '<div class="col-sm-1 tabel_header">' + 'Количество' + '</div>' + '<div class="col-sm-1 tabel_header">' + 'Цена' + '</div>' +
-     '<div class="col-sm-1 tabel_header">' + 'Стоимость' + '</div>' + '<div class="col-sm-2 tabel_header">' + 'Комментарий' + '</div>' +
-     '</div>';
-    let i = 0;
-    sum = 0;
-    for(let s of table_string) {
-        i++;
-        let price = parseInt(s.price);
-        let cost = price * s.qty;
-        sum += cost;
-        inner_html += '<div class="row">\
-            <div class="col-sm-1 tabel_str">' + i + '</div>' + '<div class="col-sm-6 tabel_str">' + s.line_text + '</div>' +
-            '<div class="col-sm-1 tabel_str">' + s.qty + '</div>' + '<div class="col-sm-1 tabel_str">' + price + '</div>' +
-             '<div class="col-sm-1 tabel_str">' + cost + '</div>' + '<div class="col-sm-2 tabel_str">' + s.comment + '</div>' +
-             '</div>';
+    //next_turn();
+    //if (check_answer()){
 
-        // checked: true
-        // comment: "Обновление до актуальной версии"
-        // id: "1.2"
-        // line_text: ""
-        // price: "50000"
-        // qty: 1
-        // text: "1C 8.0-8.2"
-    }
-    inner_html += '<div class="row">\
-    <div class="col-sm-1 tabel_header">' + '' + '</div>' + '<div class="col-sm-6 tabel_header">' + '' + '</div>' +
-    '<div class="col-sm-1 tabel_header">' + '' + '</div>' + '<div class="col-sm-1 tabel_header">' + 'ИТОГО' + '</div>' +
-     '<div class="col-sm-1 tabel_header">' + sum + '</div>' + '<div class="col-sm-2 tabel_header">' + '' + '</div>' +
-     '</div>';
-    newDiv.innerHTML = inner_html;
-    container.appendChild(newDiv);
-    //atoprint('MessForPrint');
+        //generate_print_form();
+        //atoprint('MessForPrint');
+        
+        window.print();
+    //}
 
 });
 
+function remove_old_block1(){
+    let old_q = document.getElementById('block1');
+    if (old_q !== null) {
+        $('#block1').collapse('hide');
+        old_q.removeEventListener('click', next_turn);
+        container.removeChild(old_q);
+    }
+};
 
 btnNext.addEventListener('click', ()=>
 {
+    next_turn();
+});
+
+function next_turn(){
     alertMessage =  document.getElementById('alertMessage');
     alert_div = (alertMessage === null) ? null : alert_div;
     if (check_answer()){
@@ -112,7 +99,10 @@ btnNext.addEventListener('click', ()=>
         if (tmp !== undefined) {
             cur_q = tmp;
             show_question(cur_q);
-        } else{console.log('Данные введены')};
+        } else{
+            console.log('Данные введены');
+            generate_print_form();
+    };
     } else {
         if (alert_div === null) {
             alert_div = document.createElement('div');
@@ -135,8 +125,57 @@ btnNext.addEventListener('click', ()=>
               });
         };
     };
-});
+};
 
+function generate_print_form(){
+    remove_old_block1();
+    let table_string = [].concat(...questions.map(el => { 
+        let tmp_q = el.answers.filter(ans => ans.checked)[0];
+        tmp_q.title = el.title;
+        return tmp_q;
+    }));
+    let newDiv = document.createElement('div')
+    newDiv.id = 'MessForPrint';
+    let inner_html = ''; 
+    inner_html += '<div class="row">\
+    <div class="col-sm-1 tabel_header">' + '№' + '</div>' + '<div class="col-sm-6 tabel_header">' + 'Название' + '</div>' +
+    '<div class="col-sm-1 tabel_header">' + 'Количество' + '</div>' + '<div class="col-sm-1 tabel_header">' + 'Цена' + '</div>' +
+     '<div class="col-sm-1 tabel_header">' + 'Стоимость' + '</div>' + '<div class="col-sm-2 tabel_header">' + 'Комментарий' + '</div>' +
+     '</div>';
+    let i = 0;
+    sum = 0;
+    let prev_title = '';
+    for(let s of table_string) {
+    if (s.line_text !=='') {
+        i++;
+        let price = parseInt(s.price);
+        let cost = price * s.qty;
+        sum += cost;
+        let new_title = s.title;
+        if (new_title !== prev_title) {
+            inner_html += '<div class="row">\
+                <div class="col-sm-1 tabel_header">' + '' + '</div>' + '<div class="col-sm-6 tabel_header"><h6>' + new_title + '</h6></div>' +
+                '<div class="col-sm-1 tabel_header">' + '' + '</div>' + '<div class="col-sm-1 tabel_header">' + '' + '</div>' +
+                '<div class="col-sm-1 tabel_header">' + '' + '</div>' + '<div class="col-sm-2 tabel_header">' + '' + '</div>' +
+                '</div>';
+            prev_title = new_title;
+        }
+
+            inner_html += '<div class="row">\
+                <div class="col-sm-1 tabel_str">' + i + '</div>' + '<div class="col-sm-6 tabel_str">' + s.line_text + '</div>' +
+                '<div class="col-sm-1 tabel_str">' + s.qty + '</div>' + '<div class="col-sm-1 tabel_str">' + price + '</div>' +
+                '<div class="col-sm-1 tabel_str">' + cost + '</div>' + '<div class="col-sm-2 tabel_str">' + s.comment + '</div>' +
+                '</div>';
+        }
+    }
+    inner_html += '<div class="row">\
+        <div class="col-sm-1 tabel_header">' + '' + '</div>' + '<div class="col-sm-6 tabel_header">' + '' + '</div>' +
+        '<div class="col-sm-1 tabel_header">' + '' + '</div>' + '<div class="col-sm-1 tabel_header">' + 'ИТОГО' + '</div>' +
+        '<div class="col-sm-1 tabel_header">' + sum + '</div>' + '<div class="col-sm-2 tabel_header">' + '' + '</div>' +
+        '</div>';
+    newDiv.innerHTML = inner_html;
+    container.appendChild(newDiv);
+};
 
 function check_answer() {
     let buttons = document.getElementById('btnGroup');
@@ -183,16 +222,11 @@ function myinit(){
 }
 
 function show_question(query){
-    //btnNext.disabled = query.nextId === -1;
+    btnNext.disabled = query.nextId === -1;
     btnPrint.disabled = !(query.nextId === -1);
     btnBack.disabled = query.id === 1;
 
-    let old_q = document.getElementById('block1');
-    if (old_q !== null) {
-        $('#block1').collapse('hide');
-        //old_q.removeEventListener('click', check_answer);
-        container.removeChild(old_q);
-    }
+    remove_old_block1();
 	let newDiv = document.createElement('div')
     newDiv.className = 'collapse';
     newDiv.id = 'block1';
@@ -210,7 +244,7 @@ function show_question(query){
     container.insertBefore(newDiv, rowButtons);
 
     $('#block1').collapse('show');
-    //newDiv.addEventListener('click', check_answer);
+    newDiv.addEventListener('click', next_turn);
     
 };
 
