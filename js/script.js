@@ -136,7 +136,7 @@ function generate_print_form(){
     }));
     let newDiv = document.createElement('div')
     newDiv.id = 'MessForPrint';
-    let inner_html = '<div class="row"><div class="col tabel_header"><h6>Предложение носит информационный характер и не является публичной офертой.<br>Для уточнения перечня оборудования и работ необходимо провести обследовние объекта автоматизации.<br>Контакты для связи: СБЕРКОРУС https://www.esphere.ru/contacts/, 8(800)-100-8-812, sales@esphere.ru</h6></div></div>'; 
+    let inner_html = '<div class="row"><div class="col tabel_header"><h6>Предложение носит информационный характер и не является публичной офертой.<br>Для уточнения перечня оборудования и работ необходимо провести обследовние объекта автоматизации.<br>Контакты для связи: <a href="https://www.esphere.ru/contacts/" target="_blank" class="badge badge-info">СБЕРКОРУС</a>, 8(800)-100-8-812, sales@esphere.ru</h6></div></div>'; 
     inner_html += '<div class="row">\
     <div class="col-sm-1 tabel_header">' + '№' + '</div>' + '<div class="col-sm-6 tabel_header">' + 'Название' + '</div>' +
     '<div class="col-sm-1 tabel_header">' + 'Количество' + '</div>' + '<div class="col-sm-1 tabel_header">' + 'Цена' + '</div>' +
