@@ -128,6 +128,15 @@ function next_turn(){
 };
 
 function generate_print_form(){
+    function toRUB(number) {
+        //return Intl.NumberFormat('ru-RU', { style: 'currency', currency: 'RUB' }).format(number)
+        return new Intl.NumberFormat('ru-RU', { style: 'decimal', minimumFractionDigits: 2 }).format(number)
+    };
+    
+    function toInt(number) {
+        //return Intl.NumberFormat('ru-RU', { style: 'currency', currency: 'RUB' }).format(number)
+        return new Intl.NumberFormat('ru-RU', { style: 'decimal', minimumFractionDigits: 0 }).format(number)
+    };    
 //    remove_old_block1();
     let table_string = [].concat(...questions.map(el => { 
         let tmp_q = el.answers.filter(ans => ans.checked)[0];
@@ -136,11 +145,15 @@ function generate_print_form(){
     }));
     let newDiv = document.createElement('div')
     newDiv.id = 'MessForPrint';
-    let inner_html = '<div class="row"><div class="col tabel_header"><h6>Предложение носит информационный характер и не является публичной офертой.<br>Для уточнения перечня оборудования и работ необходимо провести обследовние объекта автоматизации.<br>Контакты для связи: <a href="https://www.esphere.ru/contacts/" target="_blank" class="badge badge-info">СБЕРКОРУС</a>, 8(800)-100-8-812, sales@esphere.ru</h6></div></div>'; 
+    let now = new Date();
+    let inner_html = '<div class="row"><div class="col tabel_header"><h6>Предложение носит информационный характер \
+        и не является публичной офертой.<br>Для уточнения перечня оборудования и работ необходимо провести обследовние \
+        объекта автоматизации.<br>Контакты для связи: <a href="https://www.esphere.ru/contacts/" target="_blank" \
+        ><bold>СБЕРКОРУС</bold></a>, 8(800)-100-8-812, sales@esphere.ru<br>' + now + '</h6></div></div>'; 
     inner_html += '<div class="row">\
     <div class="col-sm-1 tabel_header">' + '№' + '</div>' + '<div class="col-sm-6 tabel_header">' + 'Название' + '</div>' +
-    '<div class="col-sm-1 tabel_header">' + 'Количество' + '</div>' + '<div class="col-sm-1 tabel_header">' + 'Цена' + '</div>' +
-     '<div class="col-sm-1 tabel_header">' + 'Стоимость' + '</div>' + '<div class="col-sm-2 tabel_header">' + 'Комментарий' + '</div>' +
+    '<div class="col-sm-1 tabel_header text-right">' + 'Количество' + '</div>' + '<div class="col-sm-1 tabel_header text-right">' + 'Цена' + '</div>' +
+     '<div class="col-sm-1 tabel_header text-right">' + 'Стоимость' + '</div>' + '<div class="col-sm-2 tabel_header">' + 'Комментарий' + '</div>' +
      '</div>';
     let i = 0;
     sum = 0;
@@ -163,15 +176,15 @@ function generate_print_form(){
 
             inner_html += '<div class="row">\
                 <div class="col-sm-1 tabel_str">' + i + '</div>' + '<div class="col-sm-6 tabel_str">' + s.line_text + '</div>' +
-                '<div class="col-sm-1 tabel_str">' + s.qty + '</div>' + '<div class="col-sm-1 tabel_str">' + price + '</div>' +
-                '<div class="col-sm-1 tabel_str">' + cost + '</div>' + '<div class="col-sm-2 tabel_str">' + s.comment + '</div>' +
+                '<div class="col-sm-1 tabel_str text-right">' + toInt(s.qty) + '</div>' + '<div class="col-sm-1 tabel_str text-right">' + toInt(price) + '</div>' +
+                '<div class="col-sm-1 tabel_str text-right">' + toInt(cost) + '</div>' + '<div class="col-sm-2 tabel_str">' + s.comment + '</div>' +
                 '</div>';
         }
     }
     inner_html += '<div class="row">\
         <div class="col-sm-1 tabel_header">' + '' + '</div>' + '<div class="col-sm-6 tabel_header">' + '' + '</div>' +
         '<div class="col-sm-1 tabel_header">' + '' + '</div>' + '<div class="col-sm-1 tabel_header">' + 'ИТОГО' + '</div>' +
-        '<div class="col-sm-1 tabel_header">' + sum + '</div>' + '<div class="col-sm-2 tabel_header">' + '' + '</div>' +
+        '<div class="col-sm-1 tabel_header text-right">' + toInt(sum) + '</div>' + '<div class="col-sm-2 tabel_header">' + '' + '</div>' +
         '</div>';
     newDiv.innerHTML = inner_html;
     container.appendChild(newDiv);

@@ -22,7 +22,7 @@ const first_questions = `
             "type": "radio",
             "answers": 
             [
-                { "text": "Да", "id": "2.1", "qty": 1, "price": "420000", "checked": false, "line_text":"• Сервер Rack Mount 2U<br>• CPU 2 × Intel XeonU E5-2680 (8C 20M Cache 2.70 GHz) <br>• RAM 2 × Оперативная память 32GB DDR3 ECC REG 1866MHz <br>• RAID Контроллер RAID P420i SAS/SATA (Raid: 0,1,5,10,50) <br>• ОПЕРАТИВНАЯ ПАМЯТЬ КОНТРОЛЛЕРА 1GB+FBWC <br>• БЛОК ПИТАНИЯ 2x Блок Питания HP 460w <br>• СЕТЕВАЯ КАРТА HP NC365T 4-port Ethernet Server Adapter <br>• РЕЛЬСЫ В СТОЙКУ Рельсы для крепления в стойку 19\\" <br>• HDD 6 × Жесткий Диск Seagate 1.2TB SAS 10k 2.5\\" + салазка ", "comment": "" },
+                { "text": "Да", "id": "2.1", "qty": 1, "price": "420000", "checked": false, "line_text":"• Сервер Rack Mount 2U<br>• CPU 2 × Intel XeonU E5-2680 (8C 20M Cache 2.70 GHz) <br>• RAM 2 × Оперативная память 32GB DDR3 ECC REG 1866MHz <br>• RAID Контроллер RAID P420i SAS/SATA (Raid: 0,1,5,10,50) <br>• ОПЕРАТИВНАЯ ПАМЯТЬ КОНТРОЛЛЕРА 1GB+FBWC <br>• БЛОК ПИТАНИЯ 2x Блок Питания HP 460w <br>• СЕТЕВАЯ КАРТА HP NC365T 4-port Ethernet Server Adapter <br>• РЕЛЬСЫ В СТОЙКУ Рельсы для крепления в стойку 19\\" <br>• HDD 6 × Жесткий Диск Seagate 1.2TB SAS 10k 2.5\\" + салазка ", "comment": "Возможно приобретение заказчиком самостоятельно при соблюдении рекомендованных параметров оборудования" },
 				{ "text": "Нет", "id": "2.2", "qty": 0, "price": "420000", "checked": false, "line_text":"Серверное оборудование", "comment": "Оборудование приобретает заказчик" }
             ],
             "nextId": 3
