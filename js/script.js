@@ -1,4 +1,3 @@
-const state_cnt = 4;
 let btnBack = document.getElementById('btnBack');
 let btnNext = document.getElementById('btnNext');
 let btnPrint = document.getElementById('btnPrint');
@@ -10,7 +9,8 @@ let alert_div = null;
 let alertMessage = null;
 let line_cnt = 0;
 let questions;
-
+let equipments;
+let line_params = [];
 
 function nextQuestion(newId){
     return  questions.filter(el => el.id === newId)[0];
@@ -24,18 +24,23 @@ function generate_new_questions(){
     let i = 1;
     let new_el = JSON.parse(second_questions);
     new_el = new_el[0];
-    
+
     for(i = 1; i <= line_cnt; i++ ) {
+        let line_param = JSON.parse(line_param_template);
+        line_param.line_no = i;
+        line_params = [...line_params, line_param];
+        
         let new_el = JSON.parse(second_questions);
         for(let j = 0; j < new_el.length ; j++ ) {
             new_el[j].id = ++cur_ind;
             tmp.nextId = new_el[j].id;
             new_el[j].title += i; 
+            new_el[j].line_no = i;
             z = 0;
             new_el[j].answers.forEach(element => {
                 element.id = '' + new_el[j].id + '.' + (++z);
             });
-            tmp = new_el[j];
+            tmp = new_el[j]; 
         }
         
         questions = [...questions, ...new_el];
@@ -89,11 +94,17 @@ function next_turn(){
             container.removeChild(alert_div);
             alert_div = null;
         };
-        
+
+        if (cur_q.param !== undefined && cur_q.param === "flow_cnt") {
+            console.log('flow_cnt');
+            let cur_line = line_params.filter(el => el.line_no === cur_q.line_no)[0];
+            cur_line.flow_cnt = cur_q.answers.filter(el => el.checked)[0].qty[0] + 1;
+        };
+
         if (cur_q.id === 9) {
             line_cnt  = parseInt(cur_q.answers.filter(el => el.checked)[0].text);
             generate_new_questions();
-        }
+        };
 
         let tmp = questions.filter(el => el.id === cur_q.nextId)[0];
         if (tmp !== undefined) {
@@ -102,7 +113,7 @@ function next_turn(){
         } else{
             console.log('Данные введены');
             generate_print_form();
-    };
+        };
     } else {
         if (alert_div === null) {
             alert_div = document.createElement('div');
@@ -138,16 +149,42 @@ function generate_print_form(){
         return new Intl.NumberFormat('ru-RU', { style: 'decimal', minimumFractionDigits: 0 }).format(number)
     };    
 //    remove_old_block1();
-    let table_string = [].concat(...questions.map(el => { 
-        let tmp_q = el.answers.filter(ans => ans.checked)[0];
-        tmp_q.title = el.title;
+    let table_string = [].concat(...questions.map(que => { 
+        let tmp_q = que.answers.filter(ans => ans.checked)[0];
+        tmp_q.title = que.title;
+        tmp_q.line_no = que.line_no;
+        // if (el.param !== undefined && el.param === "flow_cnt") {
+        //     console.log('flow_cnt2')
+        // };
+        if (tmp_q.eq_id !== undefined) {
+            res = tmp_q.eq_id.map((el, index) => {
+                let equipment = equipments.filter(eq => eq.id === el)[0];
+                if (equipment !== undefined) {
+                    let new_el = {};
+                    new_el.comment = equipment.comment;
+                    new_el.line_text = equipment.line_text;
+                    //new_el.qty = tmp_q.qty[index];
+                    new_el.qty = (equipment.param !== undefined && equipment.param === "flow_cnt") ? line_params.filter(lin => tmp_q.line_no === lin.line_no)[0].flow_cnt :  tmp_q.qty[index];
+
+                   
+                    new_el.price = equipment.price;
+                    new_el.title = tmp_q.title;
+                    if (tmp_q.comment !== undefined) {
+                        new_el.comment = tmp_q.comment;
+                    };
+                    return new_el;
+                };
+            });
+            tmp_q = res;
+
+        };
         return tmp_q;
     }));
     let newDiv = document.createElement('div')
     newDiv.id = 'MessForPrint';
     let now = new Date();
     let inner_html = '<div class="row"><div class="col tabel_header"><h6>Предложение носит информационный характер \
-        и не является публичной офертой.<br>Для уточнения перечня оборудования и работ необходимо провести обследовние \
+        и не является публичной офертой.<br>Для уточнения перечня оборудования и работ необходимо провести обследование \
         объекта автоматизации.<br>Контакты для связи: <a href="https://www.esphere.ru/contacts/" target="_blank" \
         ><bold>СБЕРКОРУС</bold></a>, 8(800)-100-8-812, sales@esphere.ru<br>' + now + '</h6></div></div>'; 
     inner_html += '<div class="row">\
@@ -159,8 +196,10 @@ function generate_print_form(){
     sum = 0;
     let prev_title = '';
     for(let s of table_string) {
+
     if (s.line_text !=='') {
         i++;
+
         let price = parseInt(s.price);
         let cost = price * s.qty;
         sum += cost;
@@ -212,14 +251,16 @@ function check_answer() {
 };
 //
 
-let state = undefined;
+//let state = undefined;
 
 
 
 function myinit(){
-    state = 1;
-    $('#block'  + state).collapse('show');
+    //state = 1;
+    $('#block1'  /*+ state*/).collapse('show');
     questions  =  JSON.parse(first_questions);
+    equipments = JSON.parse(equipments_list);
+    
     // questions2 = questions.reduce((questions,[]) => {
         //arr.reduce(callback(accumulator, element, index, arr){}, initialValue)
         // const result = votes.reduce((result, vote) => {
@@ -228,9 +269,9 @@ function myinit(){
         //   }, {})
     // });
 
-    cur_q = nextQuestion(state);
+    cur_q = nextQuestion(1);
     //generate_new_questions();
-
+    
     show_question(cur_q);
 }
 
