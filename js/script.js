@@ -13,7 +13,14 @@ let equipments;
 let line_params = [];
 
 function nextQuestion(newId){
-    return  questions.filter(el => el.id === newId)[0];
+    let tmp = questions.filter(el => el.id === newId)[0];
+    if (tmp !== undefined) {
+        if (tmp.answers.length === 1) {
+            tmp.answers[0].checked = true;
+            tmp = nextQuestion(tmp.nextId);
+        };
+    };
+    return  tmp;
 };
 
 function generate_new_questions(){
@@ -101,14 +108,15 @@ function next_turn(){
             cur_line.flow_cnt = cur_q.answers.filter(el => el.checked)[0].qty[0] + 1;
         };
 
-        if (cur_q.id === 9) {
+        if (cur_q.param !== undefined && cur_q.param === "end_common_part") {
             line_cnt  = parseInt(cur_q.answers.filter(el => el.checked)[0].text);
             generate_new_questions();
         };
 
-        let tmp = questions.filter(el => el.id === cur_q.nextId)[0];
+        tmp = nextQuestion(cur_q.nextId);
         if (tmp !== undefined) {
             cur_q = tmp;
+            
             show_question(cur_q);
         } else{
             console.log('Данные введены');

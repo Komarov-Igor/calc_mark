@@ -2,7 +2,7 @@ const first_questions = `
     [
         {
             "id": 1,
-            "title": "Общие компоненты",
+            "title": "Управленческие системы ",
             "question": "Какая учетная система используется?",
             "type": "radio",
             "answers": 
@@ -12,24 +12,36 @@ const first_questions = `
                 { "text": "1C 7.7", "id": "1.3", "qty": 1, "price": "121000", "checked": false, "line_text":"Серверные и пользовательские лицензии 1С 8.4", "comment": "Необходимо для запуска ЭДО и маркировки"},
                 { "text": "Другая УС", "id": "1.4", "qty": 1, "price": "0", "checked": false, "line_text":"Нестандартная интеграция", "comment": "Для оценки стоимости требуется дополнительное обследование" }
             ],
-            "nextId": 2
+            "nextId": 20
 
         },
         {
-            "id": 2,
-            "title": "Общие компоненты",
+            "id": 20,
+            "title": "Аппаратные средства (для ПО управленческих систем) и ПО \\"Сервер управления кодами маркировки\\"",
             "question": "Требуется приобрести серверное оборудование для разворачивания системы?",
             "type": "radio",
             "answers": 
             [
-                { "text": "Да", "id": "2.1", "qty": 1, "price": "420000", "checked": false, "line_text":"• Сервер Rack Mount 2U<br>• CPU 2 × Intel XeonU E5-2680 (8C 20M Cache 2.70 GHz) <br>• RAM 2 × Оперативная память 32GB DDR3 ECC REG 1866MHz <br>• RAID Контроллер RAID P420i SAS/SATA (Raid: 0,1,5,10,50) <br>• ОПЕРАТИВНАЯ ПАМЯТЬ КОНТРОЛЛЕРА 1GB+FBWC <br>• БЛОК ПИТАНИЯ 2x Блок Питания HP 460w <br>• СЕТЕВАЯ КАРТА HP NC365T 4-port Ethernet Server Adapter <br>• РЕЛЬСЫ В СТОЙКУ Рельсы для крепления в стойку 19\\" <br>• HDD 6 × Жесткий Диск Seagate 1.2TB SAS 10k 2.5\\" + салазка ", "comment": "Возможно приобретение заказчиком самостоятельно при соблюдении рекомендованных параметров оборудования" },
-				{ "text": "Нет", "id": "2.2", "qty": 0, "price": "420000", "checked": false, "line_text":"Серверное оборудование", "comment": "Оборудование приобретает заказчик" }
+                { "text": "Да", "id": "2.1", "eq_id": [18], "qty": [1],  "checked": false },
+				{ "text": "Нет", "id": "2.2", "eq_id": [20], "qty": [0],  "checked": false }
             ],
-            "nextId": 3
+            "nextId": 21
 
         },
         {
-            "id": 3,
+            "id": 21,
+            "title": "ПО \\"Сервер управления кодами маркировки\\"",
+            "question": "Установка серверного ПО",
+            "type": "radio",
+            "answers": 
+            [
+                { "text": "Да", "id": "2.1", "eq_id": [19], "qty": [1],  "checked": false }
+            ],
+            "nextId": 30
+
+        },
+        {
+            "id": 30,
             "title": "Общие компоненты",
             "question": "Требуется ли приобрести ПО базы данных (MS SQL) для разворачивания системы?",
             "type": "radio",
@@ -38,11 +50,23 @@ const first_questions = `
                 { "text": "Да", "id": "3.1", "qty": 1, "price": "176000", "checked": false, "line_text":"• Сервер MS SQL Server Standard 2016 Runtime для пользователей 1С:Предприятие 8. Электронная поставка 4601546127617<br>• Клиентский доступ на 5 р.м.к MS SQL Server 2016 Runtime для 1С:Предприятие 8. Электронная поставка 4601546127631<br>• Microsoft Windows Server Standard 2019 (лицензия ), Single 16License NL Each Additional Product Core, 9EM-00717<br>• Microsoft Windows Server CAL 2019 (лицензия ), Single NL Each Additional Product User, R18-05908<br>• Лицензия Windows Server 2019 User CAL Remote Desktop Services", "comment": "" },
                 { "text": "Нет", "id": "3.2", "qty": 0, "price": "176000", "checked": false, "line_text":"Сервер MS SQL Server Standard 2016 Runtime для пользователей 1С:Предприятие 8. Электронная поставка 4601546127617<br>• Клиентский доступ на 5 р.м.к MS SQL Server 2016 Runtime для 1С:Предприятие 8. Электронная поставка 4601546127631<br>• Microsoft Windows Server Standard 2019 (лицензия ), Single 16License NL Each Additional Product Core, 9EM-00717<br>• Microsoft Windows Server CAL 2019 (лицензия ), Single NL Each Additional Product User, R18-05908<br>• Лицензия Windows Server 2019 User CAL Remote Desktop Services", "comment": "Приобретается заказчиком самостоятельно"  }
             ],
-            "nextId": 4 
+            "nextId": 31
 
         },
         {
-            "id": 4,
+            "id": 31,
+            "title": "Внедрение системы",
+            "question": "Внедрение системы",
+            "type": "radio",
+            "answers": 
+            [
+                { "text": "Да", "id": "2.1", "eq_id": [21,22,23,24,25], "qty": [72,252,150,252,30],  "checked": false }
+            ],
+            "nextId": 40
+
+        },
+        {
+            "id": 40,
             "title": "Общие компоненты",
             "question": "Требуется ли внедрение WMS (складской) системы для работы с кодами маркировки?",
             "type": "radio",
@@ -52,11 +76,11 @@ const first_questions = `
                 { "text": "Да, сокращенную версию, только отгрузка", "id": "4.2", "qty": 1, "price": "462000", "checked": false, "line_text":"Облегченная версия системы управления складом (WMS)", "comment": "Поддержка только отгрузки"  },
                 { "text": "Нет, используем свою", "id": "4.3", "qty": 1, "price": "0", "checked": false, "line_text":"Система управления складом", "comment": "Доработки и настрока складской системы выполняется заказчиком"  }
             ],
-            "nextId": 5 
+            "nextId": 50
 
         },
         {
-            "id": 5,
+            "id": 50,
             "title": "Общие компоненты",
             "question": "Сколько терминалов сбора данных с поддержкой Datamatrix необходимо приобрести для работы на складе?",
             "type": "radio",
@@ -74,11 +98,11 @@ const first_questions = `
                 { "text": "9", "id": "5.9", "eq_id": [2], "qty": [9],  "checked": false},
                 { "text": "10", "id": "5.10", "eq_id": [2], "qty": [10],  "checked": false}
             ],
-            "nextId": 6 
+            "nextId": 60
 
         },
         {
-            "id": 6,
+            "id": 60,
             "title": "Общие компоненты",
             "question": "Требуется внедрение электронного документооборота?",
             "type": "radio",
@@ -88,11 +112,11 @@ const first_questions = `
                 { "text": "Нет, уже используем", "id": "6.2", "qty": 0, "price": "0", "checked": false, "line_text":"Внедрение ЭДО не требуется", "comment": ""  }
 
             ],
-            "nextId": 7 
+            "nextId": 70
 
         },
         {
-            "id": 7,
+            "id": 70,
             "title": "Общие компоненты",
             "question": "Какое количество отгрузок в год?",
             "type": "radio",
@@ -103,14 +127,15 @@ const first_questions = `
                 { "text": "До 50 0000", "id": "7.3", "qty": 50000, "price": "5", "checked": false, "line_text":"Трафик ЭДО", "comment": "Исходящие документы за год"  },
                 { "text": "До 100 0000", "id": "7.4", "qty": 100000, "price": "3", "checked": false, "line_text":"Трафик ЭДО", "comment": "Исходящие документы за год"  }
             ],
-            "nextId": 8 
+            "nextId": 80
 
         },
         {
-            "id": 9,
+            "id": 90,
             "title": "Общие компоненты",
             "question": "На каком кол-ве линии необходимо запустить маркировку?",
             "type": "radio",
+            "param": "end_common_part",
             "answers": 
             [            
                 { "text": "1", "id": "8.1", "qty": 1, "price": "0", "checked": false, "line_text":"", "comment": "" },
@@ -128,7 +153,7 @@ const first_questions = `
 
         },
         {
-            "id": 8,
+            "id": 80,
             "title": "Общие компоненты",
             "question": "Количество одновременно работающих линий?",
             "type": "radio",
@@ -145,7 +170,7 @@ const first_questions = `
                 { "text": "9", "id": "8.9", "qty": 1, "price": "0", "checked": false, "line_text":"", "comment": "" },
                 { "text": "10", "id": "8.10", "qty": 1, "price": "0", "checked": false, "line_text":"", "comment": "" }
             ],
-            "nextId": 9 
+            "nextId": 90
 
         }
     ]
