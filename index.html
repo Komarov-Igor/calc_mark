@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
     <title>Калькулятор запуска маркировки</title>
     <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -23,16 +25,51 @@
         </div>
 
     </div>
-             
-    <div class=" d-flex flex-wrap justify-content-center " id="rowButtons">
-        <div class="noprint col col-md-1  d-flex justify-content-center ">
-            <button type="button" class="btn btn-success noprint" id="btnBack">&lt;&lt;Назад</button>
+
+    <!-- <div class="row noprint  align-items-center justify-content-center" id="rowQty">
+        <div class="col-sm-6">
+            <label for="btnGroup" class="col col-form-label">Сколько терминалов сбора данных с поддержкой Datamatrix необходимо приобрести для работы на складе?</label>
+        </div>
+        <div class="col d-flex justify-content-center">
+            
+            <div class="row row-cols-3 d-flex justify-content-center btn-group btn-group-toggle" data-toggle="buttons" id="btnGroup">
+                
+                <label class="col-sm-auto border rounded  btn btn-primary ">
+                    <input type="radio" name="options" id="5.1">0 - используем свои</label>
+                <label class="col-sm-auto border rounded  btn btn-primary ">
+                    <input type="radio" name="options" id="5.1">1 </label>
+                <label class="col-sm-auto border rounded  btn btn-primary ">
+                    <input type="radio" name="options" id="5.2">2 </label>
+                <label class="col-sm-auto border rounded  btn btn-primary ">
+                    <input type="radio" name="options" id="5.3">3 </label>
+                <label class="col-sm-auto border rounded  btn btn-primary ">
+                    <input type="radio" name="options" id="5.4">4 </label>
+                <label class="col-sm-auto btn border rounded  btn-primary ">
+                    <input type="radio" name="options" id="5.5">5 </label>
+                <label class="col-sm-auto btn border rounded  btn-primary ">
+                    <input type="radio" name="options" id="5.6">6 </label>
+                <label class="col-sm-auto btn border rounded  btn-primary ">
+                    <input type="radio" name="options" id="5.7">7 </label>
+                <label class="col-sm-auto btn border rounded  btn-primary ">
+                    <input type="radio" name="options" id="5.8">8 </label>
+                <label class="col-sm-auto btn border rounded  btn-primary ">
+                    <input type="radio" name="options" id="5.9">9 </label>
+                <label class="col-sm-auto btn border rounded  btn-primary ">
+                    <input type="radio" name="options" id="5.10">10 </label>
+            </div>
+        </div>
+    </div> -->
+    
+    
+    <div class="row d-flex  justify-content-center" id="rowButtons">
+        <div class="col-sm-4 d-flex  justify-content-center noprint">
+            <button type="button" class="btn btn-success  border rounded noprint" id="btnBack">&lt;&lt;Назад</button>
         </div>       
-        <div class="noprint col col-md-1  d-flex justify-content-center ">
-            <button type="button" class="btn btn-success noprint" id="btnNext">Далее &gt;&gt;</button>
+        <div class="col-md-4 d-flex  justify-content-center noprint">
+            <button type="button" class="btn btn-success  border rounded noprint" id="btnNext">Далее &gt;&gt;</button>
         </div>  
-        <div class="noprint col col-md-1  d-flex justify-content-center ">
-            <button type="button" class="btn btn-success noprint" id="btnPrint">Печать &#128424;</button>
+        <div class="col-sm-4 d-flex  justify-content-center noprint">
+            <button type="button" class="btn btn-success border rounded noprint" id="btnPrint">Печать &#128424;</button>
         </div>  
     </div>
 

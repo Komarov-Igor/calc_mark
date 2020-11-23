@@ -228,10 +228,10 @@ function generate_print_form(){
                 '</div>';
         }
     }
-    inner_html += '<div class="row">\
-        <div class="col-sm-1 tabel_header">' + '' + '</div>' + '<div class="col-sm-6 tabel_header">' + '' + '</div>' +
-        '<div class="col-sm-1 tabel_header">' + '' + '</div>' + '<div class="col-sm-1 tabel_header">' + 'ИТОГО' + '</div>' +
-        '<div class="col-sm-1 tabel_header text-right">' + toInt(sum) + '</div>' + '<div class="col-sm-2 tabel_header">' + '' + '</div>' +
+    inner_html += '<div class="row ">\
+        <div class="col-sm-1 tabel_footer">' + '' + '</div>' + '<div class="col-sm-6 tabel_footer">' + '' + '</div>' +
+        '<div class="col-sm-1 tabel_footer">' + '' + '</div>' + '<div class="col-sm-1 tabel_footer">' + 'ИТОГО' + '</div>' +
+        '<div class="col-sm-1 tabel_footer text-right">' + toInt(sum) + '</div>' + '<div class="col-sm-2 tabel_footer">' + '' + '</div>' +
         '</div>';
     newDiv.innerHTML = inner_html;
     container.appendChild(newDiv);
@@ -294,11 +294,11 @@ function show_question(query){
     newDiv.id = 'block1';
     let inner_html = '';
     inner_html += '<h5 class="noprint">' + query.title + '</h5>';
-    inner_html += '<div class="row noprint" id="rowQty"><div class="col-6"><label for="btnGroup" class="col col-form-label">' + 
-        query.question  + '</label></div><div class="col"><div class="btn-group btn-group-toggle" data-toggle="buttons" id="btnGroup">';
+    inner_html += '<div class="row noprint  align-items-center justify-content-center" id="rowQty"><div class="col-6"><label for="btnGroup" class="col col-form-label">' + 
+        query.question  + '</label></div><div class="col d-flex justify-content-center"><div class="row row-cols-3 d-flex justify-content-center btn-group btn-group-toggle" data-toggle="buttons" id="btnGroup">';
 
     inner_html +=    query.answers.map(el =>{
-            return '<label class="btn btn-primary mr-1' + (el.checked ? ' active': '') +  '">' +
+            return '<label class="col-sm-auto border rounded  btn btn-primary' + (el.checked ? ' active': '') +  '">' +
              '<input type="radio" name="options" id="'
                 + el.id + '">' + el.text + ' </label>';
         }).join('') + '</div></div></div><hr class="noprint">';
@@ -313,40 +313,4 @@ function show_question(query){
 window.onload = function(){
     myinit();
 }
-
-// window.onload = function()
-// {
-    
-//     timeValueInput.value = 30;
-//     FormSelect = document.getElementById('FormControlSelect1');
-//     //FormSelect.addEventListener('change', () => tikTakBoom.countOfPlayers = parseInt(FormSelect.value));    
-//     tikTakBoom.init(
-//         tasks,
-//         document.getElementById('timerField'),
-//         document.getElementById('gameStatusField'),
-//         document.getElementById('questionField'),
-//         document.getElementById('answer1'),
-//         document.getElementById('answer2'),
-        
-//     );
-
-//     document.getElementById('btnStart').addEventListener('click', () => {
-//         tikTakBoom.init(
-//             tasks,
-//             document.getElementById('timerField'),
-//             document.getElementById('gameStatusField'),
-//             document.getElementById('questionField'),
-//             document.getElementById('answer1'),
-//             document.getElementById('answer2'),
-//         );
-//         tikTakBoom.run()
-//     });
-    
-//     document.getElementById('btnStop').addEventListener('click', () => tikTakBoom.finish('lose'));
-
-//     //tikTakBoom.run();
-// }
-
-
-
 

@@ -7,7 +7,7 @@ const first_questions = `
             "type": "radio",
             "answers": 
             [
-                { "text": "1C 8.4", "id": "1.1", "qty": 1, "price": "0", "checked": false, "line_text":"1C 8.4", "comment": "Обновление УС не требуется" },
+                { "text": "1C 8.3/8.4", "id": "1.1", "qty": 1, "price": "0", "checked": false, "line_text":"1C 8.4", "comment": "Обновление УС не требуется" },
                 { "text": "1C 8.0-8.2", "id": "1.2", "qty": 1, "price": "50000", "checked": false, "line_text":"Обновление до 1C 8.4", "comment": "Обновление до актуальной версии"  },
                 { "text": "1C 7.7", "id": "1.3", "qty": 1, "price": "121000", "checked": false, "line_text":"Серверные и пользовательские лицензии 1С 8.4", "comment": "Необходимо для запуска ЭДО и маркировки"},
                 { "text": "Другая УС", "id": "1.4", "qty": 1, "price": "0", "checked": false, "line_text":"Нестандартная интеграция", "comment": "Для оценки стоимости требуется дополнительное обследование" }
@@ -67,7 +67,7 @@ const first_questions = `
         },
         {
             "id": 40,
-            "title": "Общие компоненты",
+            "title": "Система управления складом",
             "question": "Требуется ли внедрение WMS (складской) системы для работы с кодами маркировки?",
             "type": "radio",
             "answers": 
@@ -81,7 +81,7 @@ const first_questions = `
         },
         {
             "id": 50,
-            "title": "Общие компоненты",
+            "title": "Система управления складом",
             "question": "Сколько терминалов сбора данных с поддержкой Datamatrix необходимо приобрести для работы на складе?",
             "type": "radio",
             "answers": 
@@ -103,7 +103,7 @@ const first_questions = `
         },
         {
             "id": 60,
-            "title": "ПО и компоненты дляэлектронного документооборота",
+            "title": "ПО и компоненты для электронного документооборота",
             "question": "Требуется внедрение электронного документооборота?",
             "type": "radio",
             "answers": 
@@ -127,12 +127,12 @@ const first_questions = `
                 { "text": "До 50 0000", "id": "7.3", "qty": 50000, "price": "5", "checked": false, "line_text":"Трафик ЭДО", "comment": "Исходящие документы за год"  },
                 { "text": "До 100 0000", "id": "7.4", "qty": 100000, "price": "3", "checked": false, "line_text":"Трафик ЭДО", "comment": "Исходящие документы за год"  }
             ],
-            "nextId": 80
+            "nextId": 90
 
         },
         {
             "id": 90,
-            "title": "Общие компоненты",
+            "title": "ПО и компоненты для электронного документооборота",
             "question": "На каком кол-ве линии необходимо запустить маркировку?",
             "type": "radio",
             "param": "end_common_part",
@@ -151,28 +151,8 @@ const first_questions = `
             ],
             "nextId": -1 
 
-        },
-        {
-            "id": 80,
-            "title": "Общие компоненты",
-            "question": "Количество одновременно работающих линий?",
-            "type": "radio",
-            "answers": 
-            [            
-                { "text": "1", "id": "8.1", "qty": 1, "price": "0", "checked": false, "line_text":"", "comment": "" },
-                { "text": "2", "id": "8.2", "qty": 1, "price": "0", "checked": false, "line_text":"", "comment": "" },
-                { "text": "3", "id": "8.3", "qty": 1, "price": "0", "checked": false, "line_text":"", "comment": "" },
-                { "text": "4", "id": "8.4", "qty": 1, "price": "0", "checked": false, "line_text":"", "comment": "" },
-                { "text": "5", "id": "8.5", "qty": 1, "price": "0", "checked": false, "line_text":"", "comment": "" },
-                { "text": "6", "id": "8.6", "qty": 1, "price": "0", "checked": false, "line_text":"", "comment": "" },
-                { "text": "7", "id": "8.7", "qty": 1, "price": "0", "checked": false, "line_text":"", "comment": "" },
-                { "text": "8", "id": "8.8", "qty": 1, "price": "0", "checked": false, "line_text":"", "comment": "" },
-                { "text": "9", "id": "8.9", "qty": 1, "price": "0", "checked": false, "line_text":"", "comment": "" },
-                { "text": "10", "id": "8.10", "qty": 1, "price": "0", "checked": false, "line_text":"", "comment": "" }
-            ],
-            "nextId": 90
-
         }
+
     ]
 `;
 
@@ -187,10 +167,10 @@ let second_questions = `
     "param": "flow_cnt",
     "answers": 
     [            
-        { "text": "до 4000", "id": "8.1", "eq_id": [1], "qty": [0],  "checked": false  },
-        { "text": "4000 - 8000", "id": "8.2", "eq_id": [1], "qty": [1],  "checked": false  },
-        { "text": "8001 - 12000", "id": "8.3", "eq_id": [1], "qty": [2],  "checked": false },
-        { "text": "более 12000", "id": "8.4", "eq_id": [1], "qty": [3],  "checked": false }
+        { "text": "до 4000", "id": "100.1", "eq_id": [1], "qty": [0],  "checked": false  },
+        { "text": "4000 - 8000", "id": "100.2", "eq_id": [1], "qty": [1],  "checked": false  },
+        { "text": "8001 - 12000", "id": "100.3", "eq_id": [1], "qty": [2],  "checked": false },
+        { "text": "более 12000", "id": "100.4", "eq_id": [1], "qty": [3],  "checked": false }
     ],
     "nextId": -1 
 
@@ -202,10 +182,10 @@ let second_questions = `
     "type": "radio",
     "answers": 
     [            
-        { "text": "Ручная наклейка этикеток", "id": "8.1", "eq_id": [4,5,6], "qty": [1,1,3],  "checked": false },
-        { "text": "Автоматический принтер-аппликатор", "id": "8.2", "eq_id": [4,7,8], "qty": [1,1,1],  "checked": false },
-        { "text": "Прямое нанесение кода на боковую этикетку и технологического кода на крышку", "id": "8.3", "eq_id": [4,11,12,10], "qty": [1,2,2,2],  "checked": false  },
-        { "text": "Прямое нанесение кода на крышку или боковую поверхность упаковки", "id": "8.4", "eq_id": [4,9,8], "qty": [1,1,1],  "checked": false, "comment": "Прямое нанесение термоструйным принтером" }
+        { "text": "Ручная наклейка этикеток", "id": "101.1", "eq_id": [4,5,6], "qty": [1,1,3],  "checked": false },
+        { "text": "Автоматический принтер-аппликатор", "id": "101.2", "eq_id": [4,7,8], "qty": [1,1,1],  "checked": false },
+        { "text": "Прямое нанесение кода на боковую этикетку и технологического кода на крышку", "id": "101.3", "eq_id": [4,11,12,10], "qty": [1,2,2,2],  "checked": false  },
+        { "text": "Прямое нанесение кода на крышку или боковую поверхность упаковки", "id": "101.4", "eq_id": [4,9,8], "qty": [1,1,1],  "checked": false, "comment": "Прямое нанесение термоструйным принтером" }
     ],
     "nextId": -1 
 },
@@ -216,8 +196,21 @@ let second_questions = `
     "type": "radio",
     "answers": 
     [            
-        { "text": "Ручная", "id": "8.1", "eq_id": [16,5,17], "qty": [1,1,1],  "checked": false, "comment": "Ручная агрегация в короба" },
-        { "text": "Автоматическая", "id": "8.2",  "eq_id": [13,14,15], "qty": [1,1,1],  "checked": false, "comment": "Автоматическая агрегация в короба" }
+        { "text": "Ручная", "id": "102.1", "eq_id": [16,5], "qty": [1,1],  "checked": false, "comment": "Ручная агрегация в короба" },
+        { "text": "Автоматическая", "id": "102.2",  "eq_id": [13,14], "qty": [1,1],  "checked": false, "comment": "Автоматическая агрегация в короба" }
+    ],
+    "nextId": -1 
+
+},
+{
+    "id": -1,
+    "title": "Параметры линии #",
+    "question": "Нанесение на групповую упаковку (короба)",
+    "type": "radio",
+    "answers": 
+    [            
+        { "text": "Ручная", "id": "103.1", "eq_id": [17,6], "qty": [1,1],  "checked": false, "comment": "Ручное нанесение на короба" },
+        { "text": "Автоматическая", "id": "103.2",  "eq_id": [15], "qty": [1],  "checked": false, "comment": "Автоматическое нанесение на короба" }
     ],
     "nextId": -1 
 
@@ -229,14 +222,29 @@ let second_questions = `
     "type": "radio",
     "answers": 
     [            
-        { "text": "Ручная", "id": "8.1", "eq_id": [16,5,17], "qty": [1,1,1],  "checked": false, "comment": "Ручная агрегация в паллеты" },
-        { "text": "Автоматическая", "id": "8.2", "eq_id": [13,14,15], "qty": [1,1,1],  "checked": false, "comment": "Автоматическая агрегация в паллеты" },
-        { "text": "Не используется", "id": "8.2", "qty": 0, "price": "0", "checked": false, "line_text":"", "comment": "Агрегация в паллеты не используется" }
+        { "text": "Ручная", "id": "104.1", "eq_id": [16,5], "qty": [1,1],  "checked": false, "comment": "Ручная агрегация в паллеты" },
+        { "text": "Автоматическая", "id": "104.2",  "eq_id": [13,14], "qty": [1,1],  "checked": false, "comment": "Автоматическая агрегация в паллеты" },
+        { "text": "Не используется", "id": "104.2", "qty": 0, "price": "0", "checked": false, "line_text":"", "comment": "Агрегация в паллеты не используется" }
 
     ],
     "nextId": -1 
 
-}]
+},
+{
+    "id": -1,
+    "title": "Параметры линии #",
+    "question": "Нанесение на транспортную упаковку (паллеты)",
+    "type": "radio",
+    "answers": 
+    [            
+        { "text": "Ручная", "id": "105.1", "eq_id": [17,6], "qty": [1,1],  "checked": false, "comment": "Ручное нанесение на  паллеты" },
+        { "text": "Автоматическая", "id": "105.2", "eq_id": [15], "qty": [1,1,1],  "checked": false, "comment": "Ручное нанесение на паллеты" },
+        { "text": "Не используется", "id": "105.2", "qty": 0, "price": "0", "checked": false, "line_text":"", "comment": "Агрегация в паллеты не используется" }
+
+    ],
+    "nextId": -1 
+}
+]
 `;
 
 let line_param_template = `
