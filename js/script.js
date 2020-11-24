@@ -29,8 +29,8 @@ function generate_new_questions(){
     let tmp = questions.filter(el => el.nextId === -1)[0];
     let cur_ind = tmp.id;
     let i = 1;
-    let new_el = JSON.parse(second_questions);
-    new_el = new_el[0];
+    // let new_el = JSON.parse(second_questions);
+    // new_el = new_el[0];
 
     for(i = 1; i <= line_cnt; i++ ) {
         let line_param = JSON.parse(line_param_template);
@@ -190,7 +190,11 @@ function generate_print_form(){
     }));
     let newDiv = document.createElement('div')
     newDiv.id = 'MessForPrint';
-    let now = new Date();
+    let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    options = { year: 'numeric', month: 'long', day: 'numeric' };
+    let today  = new Date();
+    let now = today.toLocaleDateString("ru-RU", options);
+
     let inner_html = '<div class="row"><div class="col tabel_header"><h6>Предложение носит информационный характер \
         и не является публичной офертой.<br>Для уточнения перечня оборудования и работ необходимо провести обследование \
         объекта автоматизации.<br>Контакты для связи: <a href="https://www.esphere.ru/contacts/" target="_blank" \

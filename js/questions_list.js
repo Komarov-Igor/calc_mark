@@ -145,7 +145,17 @@ const first_questions = `
                 { "text": "7", "id": "8.7", "qty": 1, "price": "0", "checked": false, "line_text":"", "comment": "" },
                 { "text": "8", "id": "8.8", "qty": 1, "price": "0", "checked": false, "line_text":"", "comment": "" },
                 { "text": "9", "id": "8.9", "qty": 1, "price": "0", "checked": false, "line_text":"", "comment": "" },
-                { "text": "10", "id": "8.10", "qty": 1, "price": "0", "checked": false, "line_text":"", "comment": "" }
+                { "text": "10", "id": "8.10", "qty": 1, "price": "0", "checked": false, "line_text":"", "comment": "" },
+                { "text": "11", "id": "8.11", "qty": 1, "price": "0", "checked": false, "line_text":"", "comment": "" },
+                { "text": "12", "id": "8.12", "qty": 1, "price": "0", "checked": false, "line_text":"", "comment": "" },
+                { "text": "13", "id": "8.13", "qty": 1, "price": "0", "checked": false, "line_text":"", "comment": "" },
+                { "text": "14", "id": "8.14", "qty": 1, "price": "0", "checked": false, "line_text":"", "comment": "" },
+                { "text": "15", "id": "8.15", "qty": 1, "price": "0", "checked": false, "line_text":"", "comment": "" },
+                { "text": "16", "id": "8.16", "qty": 1, "price": "0", "checked": false, "line_text":"", "comment": "" },
+                { "text": "17", "id": "8.17", "qty": 1, "price": "0", "checked": false, "line_text":"", "comment": "" },
+                { "text": "18", "id": "8.18", "qty": 1, "price": "0", "checked": false, "line_text":"", "comment": "" },
+                { "text": "19", "id": "8.19", "qty": 1, "price": "0", "checked": false, "line_text":"", "comment": "" },
+                { "text": "20", "id": "8.20", "qty": 1, "price": "0", "checked": false, "line_text":"", "comment": "" }
             ],
             "nextId": -1 
 
@@ -165,7 +175,7 @@ let second_questions = `
     "param": "flow_cnt",
     "answers": 
     [            
-        { "text": "до 4000", "id": "100.1", "eq_id": [1], "qty": [0],  "checked": false, comment: "Необходимость поставки определяется на этапе обследвания"  },
+        { "text": "до 4000", "id": "100.1", "eq_id": [1], "qty": [0],  "checked": false, "comment": "Необходимость поставки определяется на этапе обследвания"  },
         { "text": "4000 - 8000", "id": "100.2", "eq_id": [1], "qty": [1],  "checked": false  },
         { "text": "8001 - 12000", "id": "100.3", "eq_id": [1], "qty": [2],  "checked": false },
         { "text": "более 12000", "id": "100.4", "eq_id": [1], "qty": [3],  "checked": false }
@@ -182,6 +192,7 @@ let second_questions = `
     [            
         { "text": "Типография", "id": "101.1", "eq_id": [34], "qty": [0],  "checked": false },
         { "text": "Ручная наклейка этикеток", "id": "101.1", "eq_id": [4,5,6], "qty": [1,1,3],  "checked": false },
+        { "text": "Термотрансферный маркиратор", "id": "101.1", "eq_id": [34], "qty": [0],  "checked": false },
         { "text": "Автоматический принтер-аппликатор", "id": "101.2", "eq_id": [4,7,8], "qty": [1,1,1],  "checked": false },
         { "text": "Прямое нанесение кода на боковую этикетку и технологического кода на крышку", "id": "101.3", "eq_id": [4,11,12,10], "qty": [1,2,2,2],  "checked": false  },
         { "text": "Прямое нанесение кода на крышку или боковую поверхность упаковки", "id": "101.4", "eq_id": [4,9,8], "qty": [1,1,1],  "checked": false, "comment": "Прямое нанесение термоструйным принтером" }
