@@ -116,7 +116,7 @@ const equipments_list = `
         },
         {
            "id": 19,
-           "price": "420000", 
+           "price": "594000", 
            "line_text": "ПО \\"Сервер управления кодами маркировки\\"", 
            "comment": "Без учета стоимости интеграции со сторонними системами"
         },
@@ -155,7 +155,62 @@ const equipments_list = `
            "price": "3000", 
            "line_text": " Обучение персонала", 
            "comment": ""
-        }
+        },
+        {
+           "id": 26,
+           "price": "13000", 
+           "line_text": "1С:Бухгалтерия 8 ПРОФ", 
+           "comment": ""
+        },
+        {
+           "id": 27,
+           "price": "21600", 
+           "line_text": "1С:Предприятие 8 ПРОФ. Клиентская лицензия на 5 рабочих мест. Электронная поставка 4601546117588", 
+           "comment": ""
+        },
+        {
+           "id": 28,
+           "price": "86400", 
+           "line_text": "1С:Предприятие 8.3. Лицензия на сервер (x86-64) 4601546106780", 
+           "comment": ""
+        },
+        {
+           "id": 29,
+           "price": "18654", 
+           "line_text": "Сервер MS SQL Server Standard 2016 Runtime для пользователей 1С:Предприятие 8. Электронная поставка 4601546127617", 
+           "comment": ""
+         },
+         {
+           "id": 30,
+           "price": "47212", 
+           "line_text": "Клиентский доступ на 5 р.м.к MS SQL Server 2016 Runtime для 1С:Предприятие 8. Электронная поставка 4601546127631", 
+           "comment": ""
+         },
+         {
+           "id": 31,
+           "price": "60721", 
+           "line_text": "Microsoft Windows Server Standard 2019 (лицензия ), Single 16License NL Each Additional Product Core, 9EM-00717", 
+           "comment": ""
+         },
+         {
+           "id": 32,
+           "price": "2620", 
+           "line_text": "Microsoft Windows Server CAL 2019 (лицензия ), Single NL Each Additional Product User, R18-05908", 
+           "comment": ""
+         },
+         {
+           "id": 33,
+           "price": "7232", 
+           "line_text": "Лицензия Windows Server 2019 User CAL Remote Desktop Services", 
+           "comment": ""
+         },
+         {
+           "id": 34,
+           "price": "0", 
+           "line_text": "Оборудвание для нанесения кодов", 
+           "comment": "Типографский способ нанесения"
+         }
+
 
          
     ]

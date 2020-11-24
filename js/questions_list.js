@@ -9,7 +9,6 @@ const first_questions = `
             [
                 { "text": "1C 8.3/8.4", "id": "1.1", "qty": 1, "price": "0", "checked": false, "line_text":"1C 8.4", "comment": "Обновление УС не требуется" },
                 { "text": "1C 8.0-8.2", "id": "1.2", "qty": 1, "price": "50000", "checked": false, "line_text":"Обновление до 1C 8.4", "comment": "Обновление до актуальной версии"  },
-                { "text": "1C 7.7", "id": "1.3", "qty": 1, "price": "121000", "checked": false, "line_text":"Серверные и пользовательские лицензии 1С 8.4", "comment": "Необходимо для запуска ЭДО и маркировки"},
                 { "text": "Другая УС", "id": "1.4", "qty": 1, "price": "0", "checked": false, "line_text":"Нестандартная интеграция", "comment": "Для оценки стоимости требуется дополнительное обследование" }
             ],
             "nextId": 20
@@ -17,7 +16,7 @@ const first_questions = `
         },
         {
             "id": 20,
-            "title": "Аппаратные средства (для ПО управленческих систем) и ПО \\"Сервер управления кодами маркировки\\"",
+            "title": "Аппаратные средства",
             "question": "Требуется приобрести серверное оборудование для разворачивания системы?",
             "type": "radio",
             "answers": 
@@ -42,13 +41,12 @@ const first_questions = `
         },
         {
             "id": 30,
-            "title": "Общие компоненты",
-            "question": "Требуется ли приобрести ПО базы данных (MS SQL) для разворачивания системы?",
+            "title": "Лицензионные компоненты",
+            "question": "Лицензионные компоненты",
             "type": "radio",
             "answers": 
             [            
-                { "text": "Да", "id": "3.1", "qty": 1, "price": "176000", "checked": false, "line_text":"• Сервер MS SQL Server Standard 2016 Runtime для пользователей 1С:Предприятие 8. Электронная поставка 4601546127617<br>• Клиентский доступ на 5 р.м.к MS SQL Server 2016 Runtime для 1С:Предприятие 8. Электронная поставка 4601546127631<br>• Microsoft Windows Server Standard 2019 (лицензия ), Single 16License NL Each Additional Product Core, 9EM-00717<br>• Microsoft Windows Server CAL 2019 (лицензия ), Single NL Each Additional Product User, R18-05908<br>• Лицензия Windows Server 2019 User CAL Remote Desktop Services", "comment": "" },
-                { "text": "Нет", "id": "3.2", "qty": 0, "price": "176000", "checked": false, "line_text":"Сервер MS SQL Server Standard 2016 Runtime для пользователей 1С:Предприятие 8. Электронная поставка 4601546127617<br>• Клиентский доступ на 5 р.м.к MS SQL Server 2016 Runtime для 1С:Предприятие 8. Электронная поставка 4601546127631<br>• Microsoft Windows Server Standard 2019 (лицензия ), Single 16License NL Each Additional Product Core, 9EM-00717<br>• Microsoft Windows Server CAL 2019 (лицензия ), Single NL Each Additional Product User, R18-05908<br>• Лицензия Windows Server 2019 User CAL Remote Desktop Services", "comment": "Приобретается заказчиком самостоятельно"  }
+                { "text": "Да", "id": "3.1", "eq_id": [26,27,28,29,30,31,32,33], "qty": [1,1,1,1,1,1,5,5], "checked": false, "comment": "Необходимость определяется на этапе обследования. Возможно приобретение Заказчиком самостоятельно" }
             ],
             "nextId": 31
 
@@ -117,7 +115,7 @@ const first_questions = `
         },
         {
             "id": 70,
-            "title": "Общие компоненты",
+            "title": "ПО и компоненты для электронного документооборота",
             "question": "Какое количество отгрузок в год?",
             "type": "radio",
             "answers": 
@@ -167,7 +165,7 @@ let second_questions = `
     "param": "flow_cnt",
     "answers": 
     [            
-        { "text": "до 4000", "id": "100.1", "eq_id": [1], "qty": [0],  "checked": false  },
+        { "text": "до 4000", "id": "100.1", "eq_id": [1], "qty": [0],  "checked": false, comment: "Необходимость поставки определяется на этапе обследвания"  },
         { "text": "4000 - 8000", "id": "100.2", "eq_id": [1], "qty": [1],  "checked": false  },
         { "text": "8001 - 12000", "id": "100.3", "eq_id": [1], "qty": [2],  "checked": false },
         { "text": "более 12000", "id": "100.4", "eq_id": [1], "qty": [3],  "checked": false }
@@ -182,6 +180,7 @@ let second_questions = `
     "type": "radio",
     "answers": 
     [            
+        { "text": "Типография", "id": "101.1", "eq_id": [34], "qty": [0],  "checked": false },
         { "text": "Ручная наклейка этикеток", "id": "101.1", "eq_id": [4,5,6], "qty": [1,1,3],  "checked": false },
         { "text": "Автоматический принтер-аппликатор", "id": "101.2", "eq_id": [4,7,8], "qty": [1,1,1],  "checked": false },
         { "text": "Прямое нанесение кода на боковую этикетку и технологического кода на крышку", "id": "101.3", "eq_id": [4,11,12,10], "qty": [1,2,2,2],  "checked": false  },
