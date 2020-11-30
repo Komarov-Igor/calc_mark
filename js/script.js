@@ -1,7 +1,9 @@
 let btnBack = document.getElementById('btnBack');
 let btnNext = document.getElementById('btnNext');
 let btnPrint = document.getElementById('btnPrint');
-
+let btnSave = document.getElementById('btnSave');
+let progressBar = document.getElementById('progressbar');
+ 
 let rowButtons = document.getElementById('rowButtons');
 let container = document.getElementById('container');
 let cur_q = undefined; 
@@ -18,6 +20,17 @@ function nextQuestion(newId){
         if (tmp.answers.length === 1) {
             tmp.answers[0].checked = true;
             tmp = nextQuestion(tmp.nextId);
+        };
+    };
+    return  tmp;
+};
+
+function prevQuestion(cur_id){
+    let tmp = questions.filter(el => el.nextId === cur_id)[0];
+    if (tmp !== undefined) {
+        if (tmp.answers.length === 1) {
+            tmp.answers[0].checked = true;
+            tmp = prevQuestion(tmp.id);
         };
     };
     return  tmp;
@@ -56,7 +69,7 @@ function generate_new_questions(){
 
 btnBack.addEventListener('click', ()=>
 {
-    let tmp = questions.filter(el => el.nextId === cur_q.id)[0];
+    let tmp =  prevQuestion(cur_q.id);
     if (tmp !== undefined) {
         cur_q = tmp;
         show_question(cur_q);
@@ -77,6 +90,23 @@ btnPrint.addEventListener('click', ()=>
 
 });
 
+btnSave.addEventListener('click', ()=>
+{
+    res = prompt('Название завода', 'Молокозавод');
+    res = (res === null || res === '') ? null : res;
+    if (res !== null) {
+
+        let today  = new Date();
+        let now = '' + today.getFullYear() +'-'+ today.getMonth() 
+        +'-'+ today.getDate() +'_'+ today.getHours() +'-'+ today.getMinutes()
+         + '_';
+
+        saveAs(new Blob([JSON.stringify(questions, null, 2)], 
+            {type: "text/plain;charset=" + 'UTF-8'}), now + res + ".txt");
+    };
+});
+
+
 function remove_old_block1(){
     let old_q = document.getElementById('block1');
     if (old_q !== null) {
@@ -86,67 +116,88 @@ function remove_old_block1(){
     }
 };
 
-btnNext.addEventListener('click', ()=>
-{
-    next_turn();
-});
+btnNext.addEventListener('click', next_turn);
 
-function next_turn(){
-    alertMessage =  document.getElementById('alertMessage');
-    alert_div = (alertMessage === null) ? null : alert_div;
-    if (check_answer()){
-        
-        if (alert_div !== null || alertMessage !== null)
-        {
-            container.removeChild(alert_div);
-            alert_div = null;
-        };
+function next_turn(ev){
+    if ((ev.target.type !== undefined && ev.target.type === 'radio') || ev.target.id === 'btnNext') {
 
-        if (cur_q.param !== undefined && cur_q.param === "flow_cnt") {
-            console.log('flow_cnt');
-            let cur_line = line_params.filter(el => el.line_no === cur_q.line_no)[0];
-            cur_line.flow_cnt = cur_q.answers.filter(el => el.checked)[0].qty[0] + 1;
-        };
+        alertMessage =  document.getElementById('alertMessage');
+        alert_div = (alertMessage === null) ? null : alert_div;
+        if (check_answer()){
+            let procent = Math.round(100 * questions.indexOf(cur_q) / questions.length);
+            progressBar.style = 'width: ' + procent + '%';
+            //style="width: 100%" aria-valuenow="50"
 
-        if (cur_q.param !== undefined && cur_q.param === "end_common_part") {
-            line_cnt  = parseInt(cur_q.answers.filter(el => el.checked)[0].text);
-            generate_new_questions();
-        };
-
-        tmp = nextQuestion(cur_q.nextId);
-        if (tmp !== undefined) {
-            cur_q = tmp;
-            
-            show_question(cur_q);
-        } else{
-            console.log('Данные введены');
-            generate_print_form();
-        };
-    } else {
-        if (alert_div === null) {
-            alert_div = document.createElement('div');
-            alert_div.className = 'row';
-            alert_div.id = 'rowAlert';
-            let inner_html = '<div class="col">\
-                <div class="alert alert-danger alert-dismissible fade show noprint" role="alert" id="alertMessage">\
-                    <strong>Ввод не закончен,</strong> выберите один из вариантов.\
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">\
-                    <span aria-hidden="true">&times;</span>\
-                    </button>\
-                    </div>   \
-                </div>';
-
-            alert_div.innerHTML = inner_html;
-            container.insertBefore(alert_div, rowButtons);        
-            $("#alert").alert();
-            $('#alert').on('close.bs.alert', function () {
+            if (alert_div !== null || alertMessage !== null)
+            {
+                container.removeChild(alert_div);
                 alert_div = null;
-              });
+            };
+
+            if (cur_q.param !== undefined && cur_q.param === "flow_cnt") {
+                console.log('flow_cnt');
+                let cur_line = line_params.filter(el => el.line_no === cur_q.line_no)[0];
+                cur_line.flow_cnt = cur_q.answers.filter(el => el.checked)[0].qty[0] + 1;
+            };
+
+            if (cur_q.param !== undefined && cur_q.param === "end_common_part") {
+                line_cnt  = parseInt(cur_q.answers.filter(el => el.checked)[0].text);
+                generate_new_questions();
+            };
+
+            tmp = nextQuestion(cur_q.nextId);
+            if (tmp !== undefined) {
+                cur_q = tmp;
+                
+                show_question(cur_q);
+            } else{
+                console.log('Данные введены');
+                generate_print_form();
+            };
+        } else {
+            if (alert_div === null) {
+                alert_div = document.createElement('div');
+                alert_div.className = 'row';
+                alert_div.id = 'rowAlert';
+                let inner_html = '<div class="col">\
+                    <div class="alert alert-danger alert-dismissible fade show noprint" role="alert" id="alertMessage">\
+                        <strong>Ввод не закончен,</strong> выберите один из вариантов.\
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">\
+                        <span aria-hidden="true">&times;</span>\
+                        </button>\
+                        </div>   \
+                    </div>';
+
+                alert_div.innerHTML = inner_html;
+                container.insertBefore(alert_div, rowButtons);        
+                $("#alert").alert();
+                $('#alert').on('close.bs.alert', function () {
+                    alert_div = null;
+                });
+            };
         };
-    };
+    };    
 };
 
+
+function check_answer() {
+    let buttons = document.getElementById('btnGroup');
+    let click_status = [...buttons.children].some(el => el.getAttribute('class').split(' ').includes('active'));
+    let res = null;
+    if (click_status) {
+        let btnPressed = [...buttons.children].filter(el => el.getAttribute('class').split(' ').includes('active'))[0];
+        let btnId = btnPressed.children[0].id;
+        cur_q.answers.map( answer => answer.checked = answer.id === btnId);
+    };
+    return click_status;
+};
+
+
+
+
+
 function generate_print_form(){
+    
     function toRUB(number) {
         //return Intl.NumberFormat('ru-RU', { style: 'currency', currency: 'RUB' }).format(number)
         return new Intl.NumberFormat('ru-RU', { style: 'decimal', minimumFractionDigits: 2 }).format(number)
@@ -157,6 +208,13 @@ function generate_print_form(){
         return new Intl.NumberFormat('ru-RU', { style: 'decimal', minimumFractionDigits: 0 }).format(number)
     };    
 //    remove_old_block1();
+
+    const printFormId = 'MessForPrint';
+    
+    let old_print_form = document.getElementById(printFormId);
+    if (old_print_form != undefined) {
+        container.removeChild(old_print_form);
+    };
     let table_string = [].concat(...questions.map(que => { 
         let tmp_q = que.answers.filter(ans => ans.checked)[0];
         tmp_q.title = que.title;
@@ -189,7 +247,7 @@ function generate_print_form(){
         return tmp_q;
     }));
     let newDiv = document.createElement('div')
-    newDiv.id = 'MessForPrint';
+    newDiv.id = printFormId;
     let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     options = { year: 'numeric', month: 'long', day: 'numeric' };
     let today  = new Date();
@@ -240,30 +298,6 @@ function generate_print_form(){
     newDiv.innerHTML = inner_html;
     container.appendChild(newDiv);
 };
-
-function check_answer() {
-    let buttons = document.getElementById('btnGroup');
-    let click_status = [...buttons.children].some(el => el.getAttribute('class').split(' ').includes('active'));
-    let res = null;
-    if (click_status) {
-        let btnPressed = [...buttons.children].filter(el => el.getAttribute('class').split(' ').includes('active'))[0];
-        let btnId = btnPressed.children[0].id;
-        cur_q.answers.map( answer => answer.checked = answer.id === btnId);
-        //res = cur_q.answers.filter( answer => answer.checked = answer.id === btnId)
-        
-        // cur_q.answers.map( answer => {
-        //     answer.checked = (answer.id === btnId) ? true: false;
-        //     return answer;
-        // })
-
-
-    };
-    return click_status;
-    //return res;
-};
-//
-
-//let state = undefined;
 
 
 
