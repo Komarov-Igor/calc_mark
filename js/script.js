@@ -219,6 +219,12 @@ function generate_print_form(){
         let tmp_q = que.answers.filter(ans => ans.checked)[0];
         tmp_q.title = que.title;
         tmp_q.line_no = que.line_no;
+
+        // if (que.param !== undefined){
+        //     tmp_q.param = que.param;
+        // };
+        
+        // tmp_q.param
         // if (el.param !== undefined && el.param === "flow_cnt") {
         //     console.log('flow_cnt2')
         // };
@@ -230,9 +236,17 @@ function generate_print_form(){
                     new_el.comment = equipment.comment;
                     new_el.line_text = equipment.line_text;
                     //new_el.qty = tmp_q.qty[index];
-                    new_el.qty = (equipment.param !== undefined && equipment.param === "flow_cnt") ? line_params.filter(lin => tmp_q.line_no === lin.line_no)[0].flow_cnt :  tmp_q.qty[index];
+                    switch (equipment.param) {
+                        case 'flow_cnt':
+                            new_el.qty = line_params.filter(lin => tmp_q.line_no === lin.line_no)[0].flow_cnt;
+                            break;
+                        case 'job_qty':
+                            new_el.qty = Math.round(tmp_q.qty[index] *  ((line_cnt <5) ? 1: line_cnt / 5));
+                            break;   
+                        default:
+                            new_el.qty = tmp_q.qty[index];                        
+                    };
 
-                   
                     new_el.price = equipment.price;
                     new_el.title = tmp_q.title;
                     if (tmp_q.comment !== undefined) {
