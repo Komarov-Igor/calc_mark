@@ -57,12 +57,12 @@ h1 {
 
 .tabel_header{
     border: 1px solid #cecece;
-    background-color: cadetblue;
+    background-color: rgb(124, 184, 221);
 }
 
 .tabel_footer{
     border: 1px solid #cecece;
-    background-color: cadetblue;
+    background-color:rgb(124, 184, 221);
     font-size: 80%;
 }
 

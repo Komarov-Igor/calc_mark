@@ -210,6 +210,8 @@ function generate_print_form(){
 //    remove_old_block1();
 
     const printFormId = 'MessForPrint';
+    const  koeff = (num) =>   (num <3) ? 0.25: ((num <5) ? 1: num / 5) ;
+
     
     let old_print_form = document.getElementById(printFormId);
     if (old_print_form != undefined) {
@@ -241,7 +243,7 @@ function generate_print_form(){
                             new_el.qty = line_params.filter(lin => tmp_q.line_no === lin.line_no)[0].flow_cnt;
                             break;
                         case 'job_qty':
-                            new_el.qty = Math.round(tmp_q.qty[index] *  ((line_cnt <5) ? 1: line_cnt / 5));
+                            new_el.qty = Math.round(tmp_q.qty[index] *  koeff(line_cnt));
                             break;   
                         default:
                             new_el.qty = tmp_q.qty[index];                        
