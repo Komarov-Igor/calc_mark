@@ -58,7 +58,7 @@ const first_questions = `
             "type": "radio",
             "answers": 
             [
-                { "text": "Да", "id": "2.1", "eq_id": [21,22,23,24,25], "qty": [216,756,450,756,90],  "checked": false }
+                { "text": "Да", "id": "2.1", "eq_id": [21,22,23,24,25], "qty": [72,252,100,252,30],  "checked": false }
             ],
             "nextId": 40
 
@@ -156,7 +156,12 @@ const first_questions = `
                 { "text": "17", "id": "8.17", "qty": 1, "price": "0", "checked": false, "line_text":"", "comment": "" },
                 { "text": "18", "id": "8.18", "qty": 1, "price": "0", "checked": false, "line_text":"", "comment": "" },
                 { "text": "19", "id": "8.19", "qty": 1, "price": "0", "checked": false, "line_text":"", "comment": "" },
-                { "text": "20", "id": "8.20", "qty": 1, "price": "0", "checked": false, "line_text":"", "comment": "" }
+                { "text": "20", "id": "8.19", "qty": 1, "price": "0", "checked": false, "line_text":"", "comment": "" },
+                { "text": "21", "id": "8.19", "qty": 1, "price": "0", "checked": false, "line_text":"", "comment": "" },
+                { "text": "22", "id": "8.19", "qty": 1, "price": "0", "checked": false, "line_text":"", "comment": "" },
+                { "text": "23", "id": "8.19", "qty": 1, "price": "0", "checked": false, "line_text":"", "comment": "" },
+                { "text": "24", "id": "8.19", "qty": 1, "price": "0", "checked": false, "line_text":"", "comment": "" },
+                { "text": "25", "id": "8.20", "qty": 1, "price": "0", "checked": false, "line_text":"", "comment": "" }
             ],
             "nextId": -1 
 
@@ -191,13 +196,15 @@ let second_questions = `
     "type": "radio",
     "answers": 
     [            
-        { "text": "Типография", "id": "101.1", "eq_id": [34], "qty": [0],  "checked": false },
+        { "text": "Типография, без валидации", "id": "101.1", "eq_id": [34], "qty": [0],  "checked": false },
+        { "text": "Типография, ручн.валидация", "id": "101.1", "eq_id": [34,17,4], "qty": [0,1,1],  "checked": false , "comment": "Ручная валидация"},
+        { "text": "Типография, авт.валидация", "id": "101.1", "eq_id": [34,8,4], "qty": [0,1,1],  "checked": false, "comment": "Автоматическая валидация" },
         { "text": "Ручная наклейка этикеток", "id": "101.1", "eq_id": [4,5,6], "qty": [1,1,3],  "checked": false },
         { "text": "Термотрансферный маркиратор", "id": "101.1", "eq_id": [4,35,8,36], "qty": [1,1,1,1],  "checked": false },
         { "text": "Автоматический принтер-аппликатор", "id": "101.2", "eq_id": [4,7,8,36], "qty": [1,1,1,1],  "checked": false },
         { "text": "Два кода- упаковка и крышка", "id": "101.3", "eq_id": [4,11,10], "qty": [1,2,1],  "checked": false  },
         { "text": "Термоструйный", "id": "101.4", "eq_id": [4,9,8,36], "qty": [1,1,1,1],  "checked": false, "comment": "Прямое нанесение термоструйным принтером" },
-        { "text": "Принтер + аппликатор", "id": "101.5", "eq_id": [4, 5, 37,8,36], "qty": [1,1,1,1,1],  "checked": false, "comment": "Прямое нанесение термоструйным принтером" }
+        { "text": "Принтер + аппликатор", "id": "101.5", "eq_id": [4, 5, 37,8,36], "qty": [1,1,1,1,1],  "checked": false, "comment": "Термотрансферный принтер + аппликатор" }
     ],
     "nextId": -1 
 },

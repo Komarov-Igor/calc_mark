@@ -220,14 +220,14 @@ const equipments_list = `
          {
            "id": 35,
            "price": "950000", 
-           "line_text": "Термотрансферный маркиратор VJ DF 6320 53мм", 
+           "line_text": "Термотрансферный маркиратор VJ DF 6320 53мм",
            "param": "flow_cnt",
            "comment": ""
          },
          {
             "id": 36,
             "price": "200000", 
-            "line_text": "Отбраковщик (сталкиватель, пушер)", 
+            "line_text": "Отбраковщик (сталкиватель, пушер)",
             "param": "flow_cnt",
             "comment": ""
          },

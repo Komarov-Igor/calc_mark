@@ -210,7 +210,8 @@ function generate_print_form(){
 //    remove_old_block1();
 
     const printFormId = 'MessForPrint';
-    const  koeff = (num) =>   (num <3) ? 0.25: ((num <5) ? 1: num / 5) ;
+    //const  koeff = (num) =>   (num < 3) ? 0.25: ((num <5) ? 1: num / 5) ;
+    const  koeff = (num) =>   (num < 5 ? 1: num / 5) ;
 
     
     let old_print_form = document.getElementById(printFormId);
@@ -268,11 +269,11 @@ function generate_print_form(){
     options = { year: 'numeric', month: 'long', day: 'numeric' };
     let today  = new Date();
     let now = today.toLocaleDateString("ru-RU", options);
-
+    now = '';
     let inner_html = '<div class="row"><div class="col tabel_header"><h6>Предложение носит информационный характер \
         и не является публичной офертой.<br>Для уточнения перечня оборудования и работ необходимо провести обследование \
         объекта автоматизации.<br>Контакты для связи: <a href="https://www.esphere.ru/contacts/" target="_blank" \
-        ><bold>СБЕРКОРУС</bold></a>, 8(800)-100-8-812, sales@esphere.ru<br>' + now + '</h6></div></div>'; 
+        ><bold>СБЕРКОРУС</bold></a>, 8(800)-100-8-812, sales@esphere.ru<br>' + now + '<br>Стоимость указана в рублях с НДС</h6></div></div>'; 
     inner_html += '<div class="row">\
     <div class="col-sm-1 tabel_header">' + '№' + '</div>' + '<div class="col-sm-6 tabel_header">' + 'Название' + '</div>' +
     '<div class="col-sm-1 tabel_header text-right">' + 'Количество' + '</div>' + '<div class="col-sm-1 tabel_header text-right">' + 'Цена' + '</div>' +
