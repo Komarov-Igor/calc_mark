@@ -107,7 +107,7 @@ const equipments_list = `
         {
            "id": 17,
            "price": "27000", 
-           "line_text": "Ручной сканер групповой/транспортной упаковки", 
+           "line_text": "Ручной сканер потребительской/групповой/транспортной упаковки", 
            "comment": ""
         },
         {
@@ -236,6 +236,13 @@ const equipments_list = `
             "price": "550000", 
             "line_text": "Автоматический аппликатор INTREX 100", 
             "param": "_NO_flow_cnt",
+            "comment": ""
+          },
+          {
+            "id": 38,
+            "price": "630000", 
+            "line_text": "Термотрансферный маркиратор VJ DF 6330 53мм",
+            "param": "flow_cnt",
             "comment": ""
           }
 

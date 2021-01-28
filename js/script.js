@@ -137,7 +137,9 @@ function next_turn(ev){
             if (cur_q.param !== undefined && cur_q.param === "flow_cnt") {
                 console.log('flow_cnt');
                 let cur_line = line_params.filter(el => el.line_no === cur_q.line_no)[0];
-                cur_line.flow_cnt = cur_q.answers.filter(el => el.checked)[0].qty[0] + 1;
+                //cur_line.flow_cnt = cur_q.answers.filter(el => el.checked)[0].qty[0] + 1;
+                cur_line.flow_cnt = parseInt(cur_q.answers.filter(el => el.checked)[0].text);
+
             };
 
             if (cur_q.param !== undefined && cur_q.param === "end_common_part") {
