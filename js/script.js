@@ -13,6 +13,7 @@ let line_cnt = 0;
 let questions;
 let equipments;
 let line_params = [];
+let multipl = 1.2;
 
 function nextQuestion(newId){
     let tmp = questions.filter(el => el.id === newId)[0];
@@ -53,6 +54,7 @@ function generate_new_questions(){
         let new_el = JSON.parse(second_questions);
         for(let j = 0; j < new_el.length ; j++ ) {
             new_el[j].id = ++cur_ind;
+            new_el[j].order = new_el[j].id;
             tmp.nextId = new_el[j].id;
             new_el[j].title += i; 
             new_el[j].line_no = i;
@@ -220,7 +222,10 @@ function generate_print_form(){
     if (old_print_form != undefined) {
         container.removeChild(old_print_form);
     };
-    let table_string = [].concat(...questions.map(que => { 
+    //Отсортируем по ордер
+    questions2 = questions.sort((a,b) => {return a.order - b.order } );
+    
+    let table_string = [].concat(...questions2.map(que => { 
         let tmp_q = que.answers.filter(ans => ans.checked)[0];
         tmp_q.title = que.title;
         tmp_q.line_no = que.line_no;
@@ -278,8 +283,8 @@ function generate_print_form(){
         ><bold>СБЕРКОРУС</bold></a>, 8(800)-100-8-812, sales@esphere.ru<br>' + now + '<br>Стоимость указана в рублях с НДС</h6></div></div>'; 
     inner_html += '<div class="row">\
     <div class="col-sm-1 tabel_header">' + '№' + '</div>' + '<div class="col-sm-6 tabel_header">' + 'Название' + '</div>' +
-    '<div class="col-sm-1 tabel_header text-right">' + 'Количество' + '</div>' + '<div class="col-sm-1 tabel_header text-right">' + 'Цена' + '</div>' +
-     '<div class="col-sm-1 tabel_header text-right">' + 'Стоимость' + '</div>' + '<div class="col-sm-2 tabel_header">' + 'Комментарий' + '</div>' +
+    '<div class="col-sm-1 tabel_header_small text-right">' + 'Количество' + '</div>' + '<div class="col-sm-1 tabel_header text-right">' + 'Цена' + '</div>' +
+     '<div class="col-sm-1 tabel_header_small text-right">' + 'Стоимость' + '</div>' + '<div class="col-sm-2 tabel_header">' + 'Комментарий' + '</div>' +
      '</div>';
     let i = 0;
     sum = 0;
@@ -289,7 +294,7 @@ function generate_print_form(){
     if (s.line_text !=='') {
         i++;
 
-        let price = parseInt(s.price);
+        let price = parseInt(s.price) * multipl;
         let cost = price * s.qty;
         sum += cost;
         let new_title = s.title;
@@ -304,7 +309,7 @@ function generate_print_form(){
 
             inner_html += '<div class="row">\
                 <div class="col-sm-1 tabel_str">' + i + '</div>' + '<div class="col-sm-6 tabel_str">' + s.line_text + '</div>' +
-                '<div class="col-sm-1 tabel_str text-right">' + toInt(s.qty) + '</div>' + '<div class="col-sm-1 tabel_str text-right">' + toInt(price) + '</div>' +
+                '<div class="col-sm-1 tabel_str text-right">' + toInt(s.qty) + '</div>' + '<div class="col-sm-1 tabel_str text-right">' + toInt(price ) + '</div>' +
                 '<div class="col-sm-1 tabel_str text-right">' + toInt(cost) + '</div>' + '<div class="col-sm-2 tabel_str">' + s.comment + '</div>' +
                 '</div>';
         }

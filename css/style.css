@@ -60,6 +60,13 @@ h1 {
     background-color: rgb(124, 184, 221);
 }
 
+.tabel_header_small{
+    border: 1px solid #cecece;
+    background-color: rgb(124, 184, 221);
+    font-size: 80%;
+
+}
+
 .tabel_footer{
     border: 1px solid #cecece;
     background-color:rgb(124, 184, 221);
@@ -70,6 +77,17 @@ h1 {
 	.noprint {
 		display: none;
 	}
+    /* .main_div{
+        -webkit-transform: rotate(-90deg);
+        -moz-transform:rotate(-90deg);
+        filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+    } */
+    @page {
+        size: landscape;
+    }
+
+    
 }
+
 
 
